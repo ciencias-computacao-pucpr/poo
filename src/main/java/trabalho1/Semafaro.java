@@ -17,7 +17,7 @@ public class Semafaro {
     public static final int AMARELO=1;
     public static final int VERMELHO=2;
 
-    public static final int COR_INICIAL = AMARELO;
+    public static final int COR_INICIAL = VERMELHO;
 
     public static void mudaProximaCor() {
         cor = ++cor % 3;
