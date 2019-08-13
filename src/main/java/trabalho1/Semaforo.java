@@ -10,14 +10,12 @@ package trabalho1;
  *     ii.MudaCorFixa: com parâmetro inteiro, sem retorno ==> muda a cor atual do semáforo para a cor fornecida como parâmetro.
  *     iii.MostraCor: sem parâmetro, com retorno inteiro ==> retorna a cor atual do semáforo.
  */
-public class Semafaro {
-    public static int cor;
-
+public class Semaforo {
     public static final int VERDE=0;
     public static final int AMARELO=1;
     public static final int VERMELHO=2;
 
-    public static final int COR_INICIAL = VERMELHO;
+    public static int cor = VERMELHO;
 
     public static void mudaProximaCor() {
         cor = ++cor % 3;

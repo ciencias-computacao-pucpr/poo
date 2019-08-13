@@ -13,18 +13,18 @@ package trabalho1;
 public class Controle {
     public static void main(String[] args) {
         for (int cor = 0; cor < 10; cor++) {
-            Semafaro.mudaProximaCor();
-            System.out.printf("Cor do semáforo: %s%n", Semafaro.mostraCor());
+            Semaforo.mudaProximaCor();
+            System.out.printf("Cor do semáforo: %s%n", Semaforo.mostraCor());
         }
 
-        Semafaro.mudaCorFixa(Semafaro.AMARELO);
-        System.out.printf("Cor do semáforo: %s%n", Semafaro.mostraCor());
+        Semaforo.mudaCorFixa(Semaforo.AMARELO);
+        System.out.printf("Cor do semáforo: %s%n", Semaforo.mostraCor());
     }
 
     private static String corPorExtenso() {
-        if (Semafaro.mostraCor() == Semafaro.VERDE) return "verde";
-        if (Semafaro.mostraCor() == Semafaro.AMARELO) return "amarelo";
-        if (Semafaro.mostraCor() == Semafaro.VERMELHO) return "vermelho";
+        if (Semaforo.mostraCor() == Semaforo.VERDE) return "verde";
+        if (Semaforo.mostraCor() == Semaforo.AMARELO) return "amarelo";
+        if (Semaforo.mostraCor() == Semaforo.VERMELHO) return "vermelho";
 
         return "desligado";
     }
