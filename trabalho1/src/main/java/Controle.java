@@ -1,5 +1,3 @@
-package trabalho1;
-
 /**
  * Classe Controle
  *   a. Contém o método main com os seguintes passos:

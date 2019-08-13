@@ -1,5 +1,3 @@
-package trabalho1;
-
 /**
  * Classe Semaforo
  * a.Atributo:
