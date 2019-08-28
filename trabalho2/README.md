@@ -1,4 +1,4 @@
-#Programação Orientada a Objetos - Trabalho 2
+# Programação Orientada a Objetos - Trabalho 2
 Acrescente as seguintes classes ao projeto organizado nos pacotes Matematica e
 Especialista que contêm, respectivamente, as classes Circulo e Arquiteto,
 estudadas em aula:
