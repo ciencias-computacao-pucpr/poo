@@ -8,7 +8,9 @@ public class Inicio {
 
     public static void main(String[] args) {
         CLI cli = construirInterface();
-        while (cli.executa()) {
+
+        while (!cli.isTerminou()) {
+            cli.executa();
         }
     }
 

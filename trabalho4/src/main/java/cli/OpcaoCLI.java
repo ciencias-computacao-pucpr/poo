@@ -7,7 +7,7 @@ public class OpcaoCLI {
     private Integer opcao;
     private Runnable acao;
 
-    public OpcaoCLI(String descricao, Integer opcao, Runnable acao) {
+    OpcaoCLI(String descricao, Integer opcao, Runnable acao) {
         this.descricao = descricao;
         this.opcao = opcao;
         this.acao = acao;
@@ -31,11 +31,11 @@ public class OpcaoCLI {
         return Objects.hash(opcao);
     }
 
-    public boolean isAcao(int acao) {
+    boolean isAcao(int acao) {
         return acao == this.opcao;
     }
 
-    public void executa() {
+    void executa() {
         acao.run();
     }
 }
