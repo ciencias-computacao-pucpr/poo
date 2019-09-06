@@ -2,8 +2,8 @@ public class Mensagem {
     private boolean enviada;
     private String textoDaMensagem;
 
-    public static final boolean ENVIADA = true;
-    public static final boolean RECEBIDA = false;
+    static final boolean ENVIADA = true;
+    static final boolean RECEBIDA = false;
 
     public Mensagem(boolean enviada, String textoDaMensagem) {
         this.enviada = enviada;
@@ -16,7 +16,6 @@ public class Mensagem {
         if (enviada) {
             return "ENVIADA: " + textoDaMensagem;
         }
-
         return "RECEBIDA: " + textoDaMensagem;
     }
 }

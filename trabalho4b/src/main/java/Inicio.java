@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Inicio {
 
-    public static List<Usuario> usuarios = new ArrayList<>();
+    private static List<Usuario> usuarios = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -16,7 +15,6 @@ public class Inicio {
                 System.out.println("Opção digitada é invalida");
             }
         }
-
     }
 
     private static boolean validarOpcaoEscolhida(String valorDigitado) {
@@ -52,21 +50,33 @@ public class Inicio {
             String mensagem = scanner.nextLine().trim();
             if (mensagem.isEmpty())
                 return;
-            remetente.enviarMensagem(destino, mensagem);
-            System.out.print(">> ");
+            remetente.enviarMensagem(destino.getNome(), mensagem);
         }
     }
 
-    private static Usuario perguntaUsuario(String remetente) {
-        System.out.println("Digite o nome do " + remetente + " ou vazio para voltar");
+    private static Usuario perguntaUsuario(String tipoUsuario) {
+        System.out.println("Digite o nome do " + tipoUsuario + " ou vazio para voltar");
         System.out.print("Nome: ");
-        String s = scanner.nextLine().trim();
-        while(!s.isEmpty()) {
-            Optional<Usuario> first = usuarios.stream().filter(usuario -> usuario.getNome().equalsIgnoreCase(s)).findFirst();
-            if (first.isPresent())
-                return first.get();
+        String s;
+        while(!(s = scanner.nextLine().trim()).isEmpty()) {
+            Usuario usuarioEncontrado = procurarUsuarioCadastrado(s);
+            if (usuarioEncontrado != null)
+                return usuarioEncontrado;
+
+            System.out.println("Não existe usuário com nome " + s);
+            System.out.println("Digite o nome do " + tipoUsuario + " ou vazio para voltar");
+            System.out.print("Nome: ");
         }
 
+        return null;
+    }
+
+    static Usuario procurarUsuarioCadastrado(String nome) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equals(nome)) {
+                return usuario;
+            }
+        }
         return null;
     }
 

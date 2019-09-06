@@ -23,15 +23,15 @@ public class Conversa {
                 nomeContato, todasMensagens.toString());
     }
 
-    public void adicionarMensagem(String mensagem, boolean enviada) {
+    void adicionarMensagem(String mensagem, boolean enviada) {
         mensagens.add(new Mensagem(enviada, mensagem));
     }
 
-    public List<Mensagem> getMensagens() {
+    List<Mensagem> getMensagens() {
         return Collections.unmodifiableList(mensagens);
     }
 
-    public String getNomeContato() {
+    String getNomeContato() {
         return nomeContato;
     }
 }

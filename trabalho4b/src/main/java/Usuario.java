@@ -4,34 +4,64 @@ public class Usuario {
     private final String nome;
     private final List<Conversa> conversas = new ArrayList<>();
 
-    public Usuario(String nome) {
+    Usuario(String nome) {
         this.nome = nome;
     }
 
-    private Conversa iniciarConversa(Usuario contato) {
-        Optional<Conversa> z = conversas.stream().filter(conversa -> conversa.getNomeContato().equals(contato.getNome())).findAny();
-        if (z.isPresent())
-            return z.get();
+    private Conversa iniciarConversa(String nomeContato) {
+        Conversa conversa = procurarCoversaPorNome(nomeContato);
+        if (conversa != null)
+            return conversa;
 
-        Conversa e = new Conversa(contato.getNome());
-        this.conversas.add(e);
-        contato.conversas.add(new Conversa(nome));
-        return e;
+        return criarNovaConversa(nomeContato);
     }
 
-    public void enviarMensagem(Usuario contato, String mensagem) {
-        Conversa conversa1 = iniciarConversa(contato);
-        conversa1.adicionarMensagem(mensagem, Mensagem.ENVIADA);
-        contato.receberMensagem(nome, mensagem);
+    private Conversa criarNovaConversa(String nomeContato) {
+        Usuario usuario = Inicio.procurarUsuarioCadastrado(nomeContato);
+        if (usuario == null)
+            return null;
 
+        Conversa conversa = new Conversa(nomeContato);
+        this.conversas.add(conversa);
+        usuario.conversas.add(new Conversa(nome));
+        return conversa;
+    }
+
+    private Conversa procurarCoversaPorNome(String nomeContato) {
+        for (Conversa conversa : conversas) {
+            if (conversa.getNomeContato().equals(nomeContato))
+                return conversa;
+        }
+
+        return null;
+    }
+
+    void enviarMensagem(String nomeContato, String mensagem) {
+        Usuario usuario = Inicio.procurarUsuarioCadastrado(nomeContato);
+
+        if (usuario == null)
+            return;
+
+        Conversa conversa = iniciarConversa(nomeContato);
+        conversa.adicionarMensagem(mensagem, Mensagem.ENVIADA);
+
+        usuario.receberMensagem(nome, mensagem);
     }
 
     private void receberMensagem(String nomeContato, String mensagem) {
-        Optional<Conversa> z = conversas.stream().filter(conversa -> conversa.getNomeContato().equals(nomeContato)).findAny();
-        z.ifPresent(c -> c.adicionarMensagem(mensagem, Mensagem.RECEBIDA));
+        Usuario usuario = Inicio.procurarUsuarioCadastrado(nomeContato);
+
+        if (usuario == null)
+            return;
+
+        Conversa conversa = iniciarConversa(nomeContato);
+        if (conversa == null)
+            return;
+
+        conversa.adicionarMensagem(mensagem, Mensagem.RECEBIDA);
     }
 
-    public List<Conversa> getConversas() {
+    List<Conversa> getConversas() {
         return Collections.unmodifiableList(conversas);
     }
 
@@ -40,7 +70,7 @@ public class Usuario {
         return nome;
     }
 
-    public String getNome() {
+    String getNome() {
         return nome;
     }
 
