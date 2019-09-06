@@ -3,17 +3,28 @@ import cli.opcoes.CLICadastrarUsuario;
 import cli.opcoes.CLICoversar;
 import cli.opcoes.CLIListarMensagens;
 import cli.opcoes.CLIListarUsuarios;
+import usuario.Mensagem;
 
 public class Inicio {
 
     public static void main(String[] args) {
-        CLI cli = construirInterface();
 
-        while (!cli.isTerminou()) {
-            cli.executa();
-        }
+        Mensagem m = new Mensagem(Mensagem.ENVIADA, "Oi, como vai");
+        System.out.println(m);
+        m = new Mensagem(false, "Vou bem");
+        System.out.println(m);
+
+//        CLI cli = construirInterface();
+//
+//        while (!cli.isTerminou()) {
+//            cli.executa();
+//        }
+
     }
 
+    public static void soma(Integer a) {
+
+    }
 
     private static CLI construirInterface() {
         CLI cli = new CLI();

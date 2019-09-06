@@ -19,12 +19,6 @@ public class Usuario {
         contato.conversas.put(nome, new Conversa(nome));
     }
 
-    public void enviarMensagem(String nomeContato, String mensagem) {
-
-        Usuario contato = Repositorio.instancia().buscar(nomeContato);
-        enviarMensagem(contato, mensagem);
-    }
-
     public void enviarMensagem(Usuario contato, String mensagem) {
         iniciarConversa(contato.nome);
         Conversa conversa = conversas.get(contato.nome);
