@@ -11,13 +11,11 @@ public class Inicio {
         String valorDigitado;
 
         while (!(valorDigitado = mostrarMenuPrincipal()).equals("0")) {
-            if (!validarOpcaoEscolhida(valorDigitado)) {
-                System.out.println("Opção digitada é invalida");
-            }
+            validarOpcaoEscolhida(valorDigitado);
         }
     }
 
-    private static boolean validarOpcaoEscolhida(String valorDigitado) {
+    private static void validarOpcaoEscolhida(String valorDigitado) {
         if ("1".equals(valorDigitado)) {
             cadastraUsuario();
         } else if ("2".equals(valorDigitado)) {
@@ -27,17 +25,19 @@ public class Inicio {
         } else if ("4".equals(valorDigitado)) {
             listarConversa();
         } else {
-            return false;
+            System.out.println("Opção inválida");
         }
 
-        return true;
     }
 
     private static void listarConversa() {
-        usuarios.forEach(usuario -> usuario.getConversas().forEach(conversa -> {
-            System.out.printf("%s mensagem com %s%n", usuario, conversa.getNomeContato());
-            conversa.getMensagens().stream().map(Mensagem::toString).forEach(System.out::println);
-        }));
+        for (Usuario usuario : usuarios) {
+            for (Conversa conversa : usuario.getConversas()) {
+                System.out.printf("%s mensagem com %s%n", usuario, conversa.getNomeContato());
+                conversa.getMensagens().stream().map(Mensagem::toString).forEach(System.out::println);
+            }
+            System.out.println();
+        }
     }
 
     private static void iniciarConversa() {
@@ -55,19 +55,18 @@ public class Inicio {
     }
 
     private static Usuario perguntaUsuario(String tipoUsuario) {
-        System.out.println("Digite o nome do " + tipoUsuario + " ou vazio para voltar");
-        System.out.print("Nome: ");
-        String s;
-        while(!(s = scanner.nextLine().trim()).isEmpty()) {
-            Usuario usuarioEncontrado = procurarUsuarioCadastrado(s);
-            if (usuarioEncontrado != null)
-                return usuarioEncontrado;
-
-            System.out.println("Não existe usuário com nome " + s);
+        String usuarioDigitado;
+        do {
             System.out.println("Digite o nome do " + tipoUsuario + " ou vazio para voltar");
             System.out.print("Nome: ");
-        }
+            usuarioDigitado = scanner.nextLine().trim();
 
+            Usuario usuarioEncontrado = procurarUsuarioCadastrado(usuarioDigitado);
+            if (usuarioEncontrado != null) return usuarioEncontrado;
+
+            System.out.println("Não existe usuário com nome " + usuarioDigitado);
+
+        } while (!usuarioDigitado.isEmpty());
         return null;
     }
 
