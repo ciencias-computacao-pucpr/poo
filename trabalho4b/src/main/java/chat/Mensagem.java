@@ -1,3 +1,5 @@
+package chat;
+
 public class Mensagem {
     private boolean enviada;
     private String textoDaMensagem;
