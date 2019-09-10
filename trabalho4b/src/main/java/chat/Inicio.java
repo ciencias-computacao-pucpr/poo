@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Inicio {
 
-    private static List<Usuario> usuarios = new ArrayList<>();
+    public final static List<Usuario> usuarios = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

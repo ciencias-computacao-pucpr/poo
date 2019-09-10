@@ -14,7 +14,7 @@
 <VBox spacing="5.0" AnchorPane.topAnchor="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="6.0">
     <Button maxWidth="Infinity" onAction="#cadastrarUsuario">Cadastrar usuário</Button>
     <Button maxWidth="Infinity">Iniciar conversa</Button>
-    <Button maxWidth="Infinity">Listar usuário</Button>
+    <Button maxWidth="Infinity" onAction="#listarUsuario">Listar usuário</Button>
     <Button maxWidth="Infinity">Listar conversas</Button>
 </VBox>
 </AnchorPane>
