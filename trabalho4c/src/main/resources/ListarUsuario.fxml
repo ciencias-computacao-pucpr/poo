@@ -8,9 +8,14 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ui.ListarUsuario"
+            fx:controller="ui.Usuarios"
             prefHeight="400.0" prefWidth="600.0">
 <VBox spacing="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+    <Label text="Nome:"/>
+    <HBox spacing="5.0" maxWidth="Infinity">
+        <TextField fx:id="nomeUsuario" style="-fx-font-size: 20px;" maxWidth="Infinity"/>
+        <Button style="-fx-font-size: 20px;" text="Salvar usuário" onAction="#cadastrarUsuario"/>
+    </HBox>
     <Label text="Usuários:"/>
     <ListView fx:id="usuarioListView" />
 </VBox>

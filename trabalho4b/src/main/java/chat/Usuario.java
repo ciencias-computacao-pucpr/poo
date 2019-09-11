@@ -6,7 +6,7 @@ public class Usuario {
     private final String nome;
     private final List<Conversa> conversas = new ArrayList<>();
 
-    Usuario(String nome) {
+    public Usuario(String nome) {
         this.nome = nome;
     }
 
@@ -72,7 +72,7 @@ public class Usuario {
         return nome;
     }
 
-    String getNome() {
+    public String getNome() {
         return nome;
     }
 
